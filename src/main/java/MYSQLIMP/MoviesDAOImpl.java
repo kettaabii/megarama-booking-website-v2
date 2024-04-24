@@ -8,12 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MoviesDAOImpl implements MovieDAO {
-    private Connectiondb connection;
+    public Connection connection;
 
-    // Constructor to initialize the connection
-    public MoviesDAOImpl(Connection connection) {
-        this.connection = (Connectiondb) connection;
-    }
+
 
     @Override
     public void insertMovie(Movie movie) throws SQLException {
@@ -101,4 +98,3 @@ public class MoviesDAOImpl implements MovieDAO {
         }
     }
 }
-

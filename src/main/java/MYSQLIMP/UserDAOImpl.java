@@ -21,8 +21,11 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void insertUser(User user) throws SQLException {
+
         String sql = "INSERT INTO users (userId, userName, Pass, Privilege, Email) VALUES (?, ?, ?, ?, ?)";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        connection = Connectiondb.getConnection();
+        try (
+                PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, user.getUserId());
             statement.setString(2, user.getUserName());
             statement.setString(3, user.getPassword());
@@ -32,7 +35,8 @@ public class UserDAOImpl implements UserDAO {
         }
     }
     public User getUserByUsernameAndPassword(String username, String password) throws SQLException {
-        String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+        String sql = "SELECT * FROM users WHERE userName = ? AND Pass = ?";
+        connection = Connectiondb.getConnection();
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, username);
             statement.setString(2, password);
@@ -46,7 +50,7 @@ public class UserDAOImpl implements UserDAO {
                 }
             }
         }
-        return null; // User not found
+        return null;
     }
     @Override
     public List<User> getAllUsers() throws SQLException {
