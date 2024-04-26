@@ -6,13 +6,14 @@ public class Movie {
     private int filmId;
     private String Title;
     private String Description;
-    private Date releaseDate;
+    private String releaseDate;
     private int Duration;
     private String Genre;
     private String Director ;
     private String Cover;
+    private String MegaCover;
 
-    public Movie(Integer filmId, String title, String description, Date releaseDate, Integer duration, String genre, String director, String cover) {
+    public Movie(int filmId, String title, String description, String releaseDate, int duration, String genre, String director, String cover, String megaCover) {
         this.filmId = filmId;
         Title = title;
         Description = description;
@@ -21,6 +22,15 @@ public class Movie {
         Genre = genre;
         Director = director;
         Cover = cover;
+        MegaCover = megaCover;
+    }
+
+    public String getMegaCover() {
+        return MegaCover;
+    }
+
+    public void setMegaCover(String megaCover) {
+        MegaCover = megaCover;
     }
 
     public Integer getFilmId() {
@@ -47,11 +57,11 @@ public class Movie {
         Description = description;
     }
 
-    public Date getReleaseDate() {
+    public String getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
 
@@ -85,5 +95,20 @@ public class Movie {
 
     public void setCover(String cover) {
         Cover = cover;
+    }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "filmId=" + filmId +
+                ", Title='" + Title + '\'' +
+                ", Description='" + Description + '\'' +
+                ", releaseDate='" + releaseDate + '\'' +
+                ", Duration=" + Duration +
+                ", Genre='" + Genre + '\'' +
+                ", Director='" + Director + '\'' +
+                ", Cover='" + Cover + '\'' +
+                ", MegaCover='" + MegaCover + '\'' +
+                '}';
     }
 }

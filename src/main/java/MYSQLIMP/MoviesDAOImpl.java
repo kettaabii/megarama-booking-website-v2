@@ -19,7 +19,7 @@ public class MoviesDAOImpl implements MovieDAO {
             statement.setInt(1, movie.getFilmId());
             statement.setString(2, movie.getTitle());
             statement.setString(3, movie.getDescription());
-            statement.setDate(4, new java.sql.Date(movie.getReleaseDate().getTime()));
+            statement.setString(4, movie.getReleaseDate());
             statement.setInt(5, movie.getDuration());
             statement.setString(6, movie.getGenre());
             statement.setString(7, movie.getDirector());
@@ -32,22 +32,24 @@ public class MoviesDAOImpl implements MovieDAO {
     public List<Movie> getAllMovies() throws SQLException {
         List<Movie> movies = new ArrayList<>();
         String sql = "SELECT * FROM movies";
-        try (PreparedStatement statement = connection.prepareStatement(sql);
-             ResultSet resultSet = statement.executeQuery()) {
+        Connection con = Connectiondb.getConnection();
+        PreparedStatement statement = con.prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 int filmId = resultSet.getInt("filmId");
                 String title = resultSet.getString("Title");
-                String description = resultSet.getString("Description");
-                Date releaseDate = resultSet.getDate("releaseDate");
+                String description = resultSet.getString("Dsecription");
+                String releaseDate = resultSet.getDate("releaseDate").toString();
                 int duration = resultSet.getInt("Duration");
                 String genre = resultSet.getString("Genre");
                 String director = resultSet.getString("Director");
                 String cover = resultSet.getString("Cover");
+                String megaCover = resultSet.getString("MegaCover");
 
-                Movie movie = new Movie(filmId, title, description, releaseDate, duration, genre, director, cover);
+                Movie movie = new Movie(filmId, title, description, releaseDate, duration, genre, director, cover, megaCover);
                 movies.add(movie);
             }
-        }
+
         return movies;
     }
 
@@ -60,13 +62,14 @@ public class MoviesDAOImpl implements MovieDAO {
                 if (resultSet.next()) {
                     String title = resultSet.getString("Title");
                     String description = resultSet.getString("Description");
-                    Date releaseDate = resultSet.getDate("releaseDate");
+                    String releaseDate = resultSet.getDate("releaseDate").toString();
                     int duration = resultSet.getInt("Duration");
                     String genre = resultSet.getString("Genre");
                     String director = resultSet.getString("Director");
                     String cover = resultSet.getString("Cover");
+                    String megaCover = resultSet.getString("MegaCover");
 
-                    return new Movie(filmId, title, description, releaseDate, duration, genre, director, cover);
+                    return new Movie(filmId, title, description, releaseDate, duration, genre, director, cover, megaCover);
                 }
             }
         }
@@ -79,7 +82,7 @@ public class MoviesDAOImpl implements MovieDAO {
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, movie.getTitle());
             statement.setString(2, movie.getDescription());
-            statement.setDate(3, new java.sql.Date(movie.getReleaseDate().getTime()));
+            statement.setString(3, movie.getReleaseDate());
             statement.setInt(4, movie.getDuration());
             statement.setString(5, movie.getGenre());
             statement.setString(6, movie.getDirector());

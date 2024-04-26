@@ -12,4 +12,13 @@
         <url-pattern>/lgout</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ShowMovie</servlet-name>
+        <servlet-class>Sevlets.ShowMovie</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowMovie</servlet-name>
+        <url-pattern>/x</url-pattern>
+    </servlet-mapping>
+
 </web-app>
