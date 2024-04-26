@@ -1,6 +1,9 @@
 package Sevlets;
 
+import MYSQLIMP.MoviesDAOImpl;
+
 import java.io.*;
+import java.sql.SQLException;
 
 
 import javax.servlet.ServletException;
@@ -15,17 +18,19 @@ public class Bookmovie extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String filmId = req.getParameter("FilmId");
         super.doPost(req, resp);
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html");
-
-        // Hello
-        PrintWriter out = response.getWriter();
-        out.println("<html><body>");
-        out.println("<h1>" + message + "</h1>");
-        out.println("</body></html>");
+    public void doGet(HttpServletRequest request, HttpServletResponse response, int filmId) throws IOException {
+        MoviesDAOImpl film = new MoviesDAOImpl();
+        try {
+            request.setAttribute("filmtobook", film.getMovieById(filmId));
+            System.out.println(film.getMovieById(filmId));
+            response.sendRedirect("Said.jsp");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void destroy() {
