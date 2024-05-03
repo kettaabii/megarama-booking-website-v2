@@ -8,11 +8,19 @@ public class Reservation {
     private String filmTitle;
     private Date reservationDate;
     private int price;
-    private int seat;
+    private String seat;
 
     // Constructor
-    public Reservation(int reservationId, String viewer, String filmTitle, Date reservationDate, int price, int seat) {
+    public Reservation(int reservationId, String viewer, String filmTitle, Date reservationDate, int price, String seat) {
         this.reservationId = reservationId;
+        this.viewer = viewer;
+        this.filmTitle = filmTitle;
+        this.reservationDate = reservationDate;
+        this.price = price;
+        this.seat = seat;
+    }
+
+    public Reservation(String viewer, String filmTitle, Date reservationDate, int price, String seat) {
         this.viewer = viewer;
         this.filmTitle = filmTitle;
         this.reservationDate = reservationDate;
@@ -61,11 +69,11 @@ public class Reservation {
         this.price = price;
     }
 
-    public int getSeat() {
+    public String getSeat() {
         return seat;
     }
 
-    public void setSeat(int seat) {
+    public void setSeat(String seat) {
         this.seat = seat;
     }
 
@@ -76,7 +84,7 @@ public class Reservation {
                 "reservationId=" + reservationId +
                 ", viewer='" + viewer + '\'' +
                 ", filmTitle='" + filmTitle + '\'' +
-                ", reservationDate=" + reservationDate +
+
                 ", price=" + price +
                 ", seat=" + seat +
                 '}';

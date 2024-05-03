@@ -1,6 +1,6 @@
 package Modals;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Movie {
     private int filmId;
@@ -23,6 +23,10 @@ public class Movie {
         Director = director;
         Cover = cover;
         MegaCover = megaCover;
+    }
+
+    public Movie(int filmId, String title, String description, Date releaseDate, int duration, String genre, String director, String cover, String megaCover) {
+
     }
 
     public String getMegaCover() {
@@ -100,7 +104,6 @@ public class Movie {
     @Override
     public String toString() {
         return "Movie{" +
-                "filmId=" + filmId +
                 ", Title='" + Title + '\'' +
                 ", Description='" + Description + '\'' +
                 ", releaseDate='" + releaseDate + '\'' +
