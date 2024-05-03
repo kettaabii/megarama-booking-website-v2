@@ -1,5 +1,6 @@
 package Modals;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -10,6 +11,7 @@ public class Movie {
     @Id
     private int filmId;
     private String Title;
+    @Column(name = "Dsecription")
     private String Description;
     private String releaseDate;
     private int Duration;
@@ -31,6 +33,10 @@ public class Movie {
     }
 
     public Movie(int filmId, String title, String description, Date releaseDate, int duration, String genre, String director, String cover, String megaCover) {
+
+    }
+
+    public Movie() {
 
     }
 

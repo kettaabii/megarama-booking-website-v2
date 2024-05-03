@@ -22,50 +22,28 @@ public class MoviesDAOImpl implements MovieDAO {
 
     @Override
     public void insertMovie(Movie movie) throws SQLException, ParseException {
-        String sql = "INSERT INTO movies (filmId, Title, Dsecription, releaseDate, Duration, Genre, Director, Cover,MegaCover) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
-        Connection con = Connectiondb.getConnection();
-        System.out.println();
-        PreparedStatement statement = con.prepareStatement(sql);
-            statement.setInt(1, movie.getFilmId());
-            statement.setString(2, movie.getTitle());
-            statement.setString(3, movie.getDescription());
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Session session = HibernateUtil.getSessionFactory().openSession();
 
-            java.util.Date parsedReleaseDate = dateFormat.parse(movie.getReleaseDate());
-            statement.setDate(4, new java.sql.Date(parsedReleaseDate.getTime()));
-            statement.setInt(5, movie.getDuration());
-            statement.setString(6, movie.getGenre());
-            statement.setString(7, movie.getDirector());
-            statement.setString(8, movie.getCover());
-            statement.setString(9, movie.getMegaCover());
-            statement.executeUpdate();
+        session.save(movie);
+        session.beginTransaction().commit();
+        session.close();
+
+
+
         }
 
 
     @Override
     public List<Movie> getAllMovies() throws SQLException {
-        Session session=null;
-        Transaction transaction = null;
-        List<Movie> movies = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        List<Movie> query = session.createQuery("Select t from Movie t", Movie.class).getResultList();
+        List<Movie> movies = query;
+        transaction.commit();
+        session.close();
+        return movies;
 
-        try {
-            session = HibernateUtil.getSessionFactory().openSession();
-            transaction = session.beginTransaction();
 
-            List<Movie> query = session.createQuery("Select t from Movie t", Movie.class).getResultList();
-            movies = query;
-
-            transaction.commit();
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            if (session != null) {
-                session.close();
-            }
-        }return movies;
 //        List<Movie> movies = new ArrayList<>();
 //        String sql = "SELECT * FROM movies";
 //        Connection con = Connectiondb.getConnection();
