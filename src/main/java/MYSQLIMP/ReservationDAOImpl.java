@@ -8,45 +8,46 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReservationDAOImpl implements ReservationDAO {
-    private Connection connection;
+    public Connection connection;
 
-    // Constructor to initialize the connection
-    public ReservationDAOImpl(Connection connection) {
-        this.connection = connection;
-    }
+
 
     @Override
     public void insertReservation(Reservation reservation) throws SQLException {
-        String sql = "INSERT INTO reservations (reservationId, viewer, filmTitle, reservationDate, price, seat) VALUES (?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+        String sql = "INSERT INTO reservation (reservationId, viewer, filmTitle, reservationDate, price, seat) VALUES (?, ?, ?, ?, ?, ?)";
+        Connection con = Connectiondb.getConnection();
+        PreparedStatement statement = con.prepareStatement(sql);
+
             statement.setInt(1, reservation.getReservationId());
             statement.setString(2, reservation.getViewer());
             statement.setString(3, reservation.getFilmTitle());
             statement.setDate(4, new java.sql.Date(reservation.getReservationDate().getTime()));
-            statement.setDouble(5, reservation.getPrice());
-            statement.setInt(6, reservation.getSeat());
+            statement.setInt(5, reservation.getPrice());
+            statement.setString(6, reservation.getSeat());
             statement.executeUpdate();
-        }
+
     }
 
     @Override
     public List<Reservation> getAllReservations() throws SQLException {
         List<Reservation> reservations = new ArrayList<>();
-        String sql = "SELECT * FROM reservations";
-        try (PreparedStatement statement = connection.prepareStatement(sql);
-             ResultSet resultSet = statement.executeQuery()) {
+        System.out.println(reservations +"REEEEEEEEEEEESEEEEEEEERRRRRVVVVAAAATTTTIIIIOOONNNSS");
+        String sql = "SELECT * FROM reservation";
+        Connection con = Connectiondb.getConnection();
+        PreparedStatement statement = con.prepareStatement(sql);
+        ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 int reservationId = resultSet.getInt("reservationId");
                 String viewer = resultSet.getString("viewer");
                 String filmTitle = resultSet.getString("filmTitle");
                 Date reservationDate = resultSet.getDate("reservationDate");
-                double price = resultSet.getDouble("price");
-                int seat = resultSet.getInt("seat");
+                int price = resultSet.getInt("price");
+                String seat = resultSet.getString("seat");
 
                 Reservation reservation = new Reservation(reservationId, viewer, filmTitle, reservationDate, (int) price, seat);
                 reservations.add(reservation);
             }
-        }
+
         return reservations;
     }
 
@@ -58,7 +59,7 @@ public class ReservationDAOImpl implements ReservationDAO {
             statement.setString(2, reservation.getFilmTitle());
             statement.setDate(3, new java.sql.Date(reservation.getReservationDate().getTime()));
             statement.setInt(4, reservation.getPrice());
-            statement.setInt(5, reservation.getSeat());
+            statement.setString(5, reservation.getSeat());
             statement.setInt(6, reservation.getReservationId());
             statement.executeUpdate();
         }

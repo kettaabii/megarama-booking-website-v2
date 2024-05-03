@@ -7,8 +7,7 @@
 
     <title>cliaaan</title>
     <style><%@include file="WEB-INF/Movie.css"%></style>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-</head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"></head>
 <body>
 <!-- Navbar -->
 <nav class="navbar nav-movie bg-dark fixed-top navbar-expand-lg py-0" style="height: 70px;">
@@ -41,15 +40,11 @@
             </div>
 
         </div>
-        <div class="search">
-            <form action="">
-                <li class="nav-link search-bar active rounded col-10 mt-2">
-                    <input class="search col-10 text-light bg-slight border border-0 px-3 py-1 rounded" id="search"
-                           type="text" placeholder="Search for movie...">
-                    <i style="color: white;" onclick="searchWeather()" class="bx bx-search-alt icon rounded"></i>
-                </li>
-            </form>
-        </div>
+        <div class="login">
+            <a class="nav-link text-light mx-lg-2 mx-4" href="/Cinema_Megarama_war_exploded/login"><% if (session.getAttribute("username") == null){
+            %>login<%} else {%>logout<%}%></a>
+
+    </div>
         <i class='bx bx-user bx-flip-horizontal icon rounded' style='color:white'></i>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
                 aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
@@ -64,10 +59,25 @@
             <div class="example"  >
                 <div class="description" style="display: flex;margin: 10px;">
                 <img src="${film.getCover()}" class="backimg"/>
-                <div style="margin:15px;">
-                <h6 style="color: white;">${film.getTitle()}</h6>
-                    <h6>desc</h6>
-                    <h6>${film.getDescription()}</h6>
+                <div style="margin:15px; display: flex; flex-direction: column; justify-content: space-between">
+                    <div style="width: 350px">
+                        <h3 style="color: white;">${film.getTitle()}</h3>
+                        <p style="font-size: 13px; text-align: start;">${film.getDuration()} -<span> ${film.getReleaseDate()} -</span><span
+                                style="font-weight: bold;">${film.getDirector()}</span></p>
+                        <p style="font-size: 13px; text-align: start;"><span class="text-success">92% Match </span><span
+                                class="border rounded px-1 mx-2">TV - MA</span><span style="font-weight: bold;"
+                                                                                     class="border rounded px-1 mx-1 ">HD</span><span
+                                style='color:#fdb000; background: rgba(0, 0, 0, 0.6);' class="rounded border px-2 mx-1">9.0 <i
+                                class='bx bxs-star' style='color:#fdb000'></i></span></p>
+                        <p style="font-size: 15px; text-align: start;">Genre : ${film.getGenre()}</p>
+                        <p style="font-size: 14px; text-align: start;">${film.getDescription()}</p>
+                    </div>
+
+                    <div class="btns" style="display:flex ; justify-content: space-around;">
+                    <button class="bte"><a style="color: white; text-decoration: none;" type="submit" href="BookMovie?id=${film.getFilmId()}" >Book Now</a></button>
+                        <button>Details</button>
+
+                    </div>
                 </div>
             </div>
 
@@ -83,7 +93,7 @@
 
     </figure>
 </div>
-<h2 style="color: white; margin: 1rem;">Streaming Now :</h2>
+<h2 style="color: white; margin: 1rem; padding: 10px 20px; background: background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 20%, rgba(0,0,0,1) 50%, rgba(0,0,0,0.6) 80%, rgba(0,0,0,0) 100%);">Streaming Now :</h2>
 
 <div class="grid-wrapper" style="display: flex;flex-wrap: wrap;">
     <c:forEach var="film" items="${filmlist}">

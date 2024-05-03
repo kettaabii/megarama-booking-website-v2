@@ -1,8 +1,13 @@
 package Modals;
 
-import java.util.Date;
-
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.sql.Date;
+@Entity
+@Table(name = "movies")
 public class Movie {
+    @Id
     private int filmId;
     private String Title;
     private String Description;
@@ -23,6 +28,10 @@ public class Movie {
         Director = director;
         Cover = cover;
         MegaCover = megaCover;
+    }
+
+    public Movie(int filmId, String title, String description, Date releaseDate, int duration, String genre, String director, String cover, String megaCover) {
+
     }
 
     public String getMegaCover() {
@@ -100,7 +109,6 @@ public class Movie {
     @Override
     public String toString() {
         return "Movie{" +
-                "filmId=" + filmId +
                 ", Title='" + Title + '\'' +
                 ", Description='" + Description + '\'' +
                 ", releaseDate='" + releaseDate + '\'' +

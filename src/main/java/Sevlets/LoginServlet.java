@@ -23,7 +23,7 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        // Authenticate user credentials
+
         try (Connection connection = Connectiondb.getConnection()) {
             UserDAO userDAO = new UserDAOImpl(connection);
             User user = userDAO.getUserByUsernameAndPassword(username, password);
@@ -39,8 +39,10 @@ public class LoginServlet extends HttpServlet {
                 } else if ("client".equalsIgnoreCase(user.getPrivilege())) {
                     // Set session attribute to mark user as logged in
                     session.setAttribute("clientLoggedIn", true);
+                    session.setAttribute("username", user.getUserName());
+                    System.out.println(user.getUserName() +"::::::::::::::::::");
                     // Redirect to client dashboard
-                    response.sendRedirect("cllogin.jsp");
+                    response.sendRedirect(request.getContextPath()+"/");
                 } else {
                     // Invalid privilege
                     response.sendRedirect("login.jsp?error=Invalid privilege");

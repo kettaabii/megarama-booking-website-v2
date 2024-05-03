@@ -11,14 +11,21 @@
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/lgout</url-pattern>
     </servlet-mapping>
-
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>Sevlets.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/lgin</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>ShowMovie</servlet-name>
         <servlet-class>Sevlets.ShowMovie</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ShowMovie</servlet-name>
-        <url-pattern>/x</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
 </web-app>

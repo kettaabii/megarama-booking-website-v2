@@ -3,11 +3,12 @@ package DAO;
 import Modals.Movie;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.List;
 
 public interface MovieDAO {
     // Method to insert a new movie
-    void insertMovie(Movie movie) throws SQLException;
+    void insertMovie(Movie movie) throws SQLException, ParseException;
 
     // Method to retrieve all movies
     List<Movie> getAllMovies() throws SQLException;
@@ -20,5 +21,8 @@ public interface MovieDAO {
 
     // Method to delete a movie
     void deleteMovie(int filmId) throws SQLException;
+
+
+    List<Movie> searchMoviesByTitle(String title) throws SQLException;
 }
 
