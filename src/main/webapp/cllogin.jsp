@@ -41,8 +41,15 @@
 
         </div>
         <div class="login">
+<<<<<<< HEAD
             <a class="nav-link text-light mx-lg-2 mx-4" href="/Cinema_Megarama_war_exploded/login">Login</a>
         </div>
+=======
+            <a class="nav-link text-light mx-lg-2 mx-4" href="/Cinema_Megarama_war_exploded/login"><% if (session.getAttribute("username") == null){
+            %>login<%} else {%>logout<%}%></a>
+
+    </div>
+>>>>>>> 1ca07078820061a6a3ecc05655c947f1696bcd54
         <i class='bx bx-user bx-flip-horizontal icon rounded' style='color:white'></i>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
                 aria-controls="offcanvasNavbar" aria-label="Toggle navigation">

@@ -1,8 +1,18 @@
 package Modals;
 
+<<<<<<< HEAD
 import java.sql.Date;
 
+=======
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.sql.Date;
+@Entity
+@Table(name = "movies")
+>>>>>>> 1ca07078820061a6a3ecc05655c947f1696bcd54
 public class Movie {
+    @Id
     private int filmId;
     private String Title;
     private String Description;

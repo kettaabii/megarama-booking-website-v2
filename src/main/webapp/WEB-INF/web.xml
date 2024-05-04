@@ -11,7 +11,10 @@
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/lgout</url-pattern>
     </servlet-mapping>
+<<<<<<< HEAD
     
+=======
+>>>>>>> 1ca07078820061a6a3ecc05655c947f1696bcd54
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>Sevlets.LoginServlet</servlet-class>
@@ -20,7 +23,10 @@
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/lgin</url-pattern>
     </servlet-mapping>
+<<<<<<< HEAD
     
+=======
+>>>>>>> 1ca07078820061a6a3ecc05655c947f1696bcd54
     <servlet>
         <servlet-name>ShowMovie</servlet-name>
         <servlet-class>Sevlets.ShowMovie</servlet-class>

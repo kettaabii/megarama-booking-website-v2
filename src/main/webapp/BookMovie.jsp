@@ -9,6 +9,7 @@
     <title>cliaaan</title>
     <style><%@include file="WEB-INF/bookstylz.css"%></style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<<<<<<< HEAD
 <style>body {
         font-family: Arial, sans-serif;
         background-color: #0000FF;
@@ -104,6 +105,9 @@
 </head>
 
 
+=======
+</head>
+>>>>>>> 1ca07078820061a6a3ecc05655c947f1696bcd54
 <body>
 <!-- Navbar -->
 <nav class="navbar nav-movie bg-dark fixed-top navbar-expand-lg py-0" style="height: 70px;">
@@ -255,6 +259,7 @@
             </div>
                 <button id="btn" type="submit">Confirm your ticket reservation</button>
             </form>
+<<<<<<< HEAD
             
             
             
@@ -333,6 +338,9 @@
                 
                 
                 
+=======
+
+>>>>>>> 1ca07078820061a6a3ecc05655c947f1696bcd54
         </div>
 
 
@@ -345,6 +353,7 @@
 
 
 
+<<<<<<< HEAD
 
 
 
@@ -453,6 +462,8 @@
 
 
 
+=======
+>>>>>>> 1ca07078820061a6a3ecc05655c947f1696bcd54
 <script>
     let seats = document.querySelector(".all-seats");
     for (var i = 0; i < 59; i++) {
@@ -486,7 +497,11 @@
                 count -= 1;
                 amount -= 200;
             }
+<<<<<<< HEAD
             document.querySelector(".amount").innerHTML = amount;
+=======
+            document.querySelector(".amount").innerHTML = amount +'<p>Dhs</p>' ;
+>>>>>>> 1ca07078820061a6a3ecc05655c947f1696bcd54
             document.querySelector(".count").innerHTML = count;
             valueAmount.value = amount;
         });

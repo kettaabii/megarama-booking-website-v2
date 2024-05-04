@@ -24,7 +24,13 @@ public class InsertMovieServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 
+<<<<<<< HEAD
 	
+=======
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+>>>>>>> 1ca07078820061a6a3ecc05655c947f1696bcd54
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		MovieDAO film = new MoviesDAOImpl();
