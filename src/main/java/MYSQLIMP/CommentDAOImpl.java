@@ -1,65 +1,59 @@
 package MYSQLIMP;
-
+import DAO.CommentDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-
-import DAO.Comment;
-import DAO.CommentDAO;
-import Modals.Movie;
-
-public class CommentDAOImpl {
-	  public Connection connection;
+import Modals.Comment;
 
 
 
-	    @Override
-	    void insertcomment(Comment comment) throws SQLException, ParseException {
-	        String sql = "INSERT INTO comments (id, filmId, userId, description) VALUES (?, ?, ?, ?)";
-	        Connection con = Connectiondb.getConnection();
-	        
-	        System.out.println();
-	        
-	        PreparedStatement statement = con.prepareStatement(sql);
-	            statement.setInt(1, comment.getId());
-	            statement.setInt(2, comment.getFilmId());
-	            statement.setInt(3, comment.getFilmId());
-	            statement.setString(4, comment.getDescription());
-	            statement.executeUpdate();
-	        }
-}
+public class CommentDAOImpl implements CommentDAO {
+    private Connection connection;
+    public CommentDAOImpl() {
+        // Initialization code if needed
+    }
 
+    public CommentDAOImpl(Connection connection) {
+        this.connection = connection;
+    }
 
-
-
-
-
-
-@Override
-List<Comment> getAllComments() throws SQLException {
-    List<Comment> comments = new ArrayList<>();
-    String sql = "SELECT * FROM comment";
-    Connection con = Connectiondb.getConnection();
-    PreparedStatement statement = con.prepareStatement(sql);
-         ResultSet resultSet = statement.executeQuery();
-        while (resultSet.next()) {
-            int id = resultSet.getInt("id");
-            int filmId = resultSet.getInt("filmId");
-            int userId = resultSet.getInt("userId");
-            String description = resultSet.getString("decription");
-            
-
-            Comment comment = new Comment(id, filmId, userId, description);
-            comments.add(comment);
+    @Override
+    public void addComment(Comment comment) {
+        try {
+            String sql = "INSERT INTO comments (movie_id, user_id, description, rating) VALUES (?, ?, ?, ?)";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, comment.getMovieId());
+            statement.setInt(2, comment.getUserId());
+            statement.setString(3, comment.getDescription());
+            statement.setInt(4, comment.getRating());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+    }
 
-    return comments;
+    @Override
+    public List<Comment> getAllComments() {
+        List<Comment> comments = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM comments";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Comment comment = new Comment(
+                    resultSet.getInt("movie_id"),
+                    resultSet.getInt("user_id"),
+                    resultSet.getString("description"),
+                    resultSet.getInt("rating")
+                );
+                comments.add(comment);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return comments;
+    }
 }
-
-
-

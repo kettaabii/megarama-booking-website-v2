@@ -37,6 +37,12 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+    <groupId>commons-dbutils</groupId>
+    <artifactId>commons-dbutils</artifactId>
+    <version>1.7</version> <!-- Use the latest version available -->
+</dependency>
+
+        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>${junit.version}</version>

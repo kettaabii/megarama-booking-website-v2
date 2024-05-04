@@ -271,18 +271,18 @@
             
             
             
-            
-            
-                <div class="noter">
-                
-                
-                
-                
-                <div class="container1">
-      
+            <form id="commentForm" action="AddCommentServlet" method="post">
+    <div class="container1">
+        <!-- Hidden fields for movieId and userId -->
+        <input type="hidden" id="movieId" name="movieId" value="1">
+        <input type="hidden" id="userId" name="userId" value="1">
+
         <div class="rating">
-            <span id="rating">0</span>/5
+            <label for="rating">Rating:</label>
+            <input type="number" id="rating" name="rating" min="1" max="5" required>
+            /5
         </div>
+        
         <div class="stars" id="stars">
             <span class="star" data-value="1">★</span>
             <span class="star" data-value="2">★</span>
@@ -290,14 +290,14 @@
             <span class="star" data-value="4">★</span>
             <span class="star" data-value="5">★</span>
         </div>
-        <p>Share your review:</p>
-        <textarea id="review"
-                  placeholder="Write your review here">
-          </textarea>
-        <button id="submit">Submit</button>
-        <div class="reviews" id="reviews">
-        </div>
+       
+        <label for="review">Share your review:</label>
+        <textarea id="review" name="description" placeholder="Write your review here" required></textarea>
+        <button type="submit">Submit</button>
+        <div class="reviews" id="reviews"></div>
     </div>
+</form>
+
                 
                 
                 
