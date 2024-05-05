@@ -11,12 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.MovieDAO;
 import DAO.UserDAO;
 import MYSQLIMP.Connectiondb;
-import MYSQLIMP.MoviesDAOImpl;
 import MYSQLIMP.UserDAOImpl;
-import Modals.Movie;
 import Modals.User;
 
 /**

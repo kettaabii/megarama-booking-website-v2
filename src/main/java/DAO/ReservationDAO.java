@@ -1,9 +1,9 @@
 package DAO;
 
-import Modals.Reservation;
-
 import java.sql.SQLException;
 import java.util.List;
+
+import Modals.Reservation;
 
 public interface ReservationDAO {
 

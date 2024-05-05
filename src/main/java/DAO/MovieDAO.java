@@ -1,10 +1,10 @@
 package DAO;
 
-import Modals.Movie;
-
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
+
+import Modals.Movie;
 
 public interface MovieDAO {
     // Method to insert a new movie

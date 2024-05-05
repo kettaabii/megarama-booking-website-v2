@@ -1,9 +1,7 @@
 package Sevlets;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,10 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DAO.ReservationDAO;
-import MYSQLIMP.Connectiondb;
-import MYSQLIMP.MoviesDAOImpl;
 import MYSQLIMP.ReservationDAOImpl;
-import Modals.Reservation;
 
 
 @WebServlet("/listreservationsservlet")
@@ -40,9 +35,6 @@ public class listreservationsservlet extends HttpServlet {
 
       
         }
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+	
 
 }

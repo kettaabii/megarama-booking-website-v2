@@ -1,19 +1,18 @@
 package Sevlets;
 
-import DAO.ReservationDAO;
-import MYSQLIMP.ReservationDAOImpl;
-import Modals.Reservation;
-
-import java.io.*;
+import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
-
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import DAO.ReservationDAO;
+import MYSQLIMP.ReservationDAOImpl;
+import Modals.Reservation;
 
 @WebServlet("/confirm-reservation")
 public class ConfirmRes extends HttpServlet {

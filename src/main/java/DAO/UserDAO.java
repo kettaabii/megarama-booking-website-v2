@@ -1,9 +1,9 @@
 package DAO;
 
-import Modals.User;
-
 import java.sql.SQLException;
 import java.util.List;
+
+import Modals.User;
 
 public interface UserDAO {
     // Method to insert a new user

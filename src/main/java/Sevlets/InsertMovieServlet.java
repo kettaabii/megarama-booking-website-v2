@@ -1,8 +1,6 @@
 package Sevlets;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DAO.MovieDAO;
-import MYSQLIMP.Connectiondb;
 import MYSQLIMP.MoviesDAOImpl;
 import Modals.Movie;
 

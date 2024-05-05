@@ -1,7 +1,6 @@
 package Sevlets;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -11,9 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.MovieDAO;
-import DAO.ReservationDAO;
-import MYSQLIMP.Connectiondb;
 import MYSQLIMP.MoviesDAOImpl;
 import MYSQLIMP.ReservationDAOImpl;
 import Modals.Reservation;
