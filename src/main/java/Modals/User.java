@@ -1,19 +1,41 @@
 package Modals;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table (name = "users")
 public class User {
-    private int userId;
+   @Id
+   private int userId;
     private String userName;
-    private String password;
+    @Column(name = "Pass") private String password;
     private String privilege;
     private String email;
+    private String profile;
 
 
-    public User(int userId, String userName, String password, String privilege, String email) {
+    public User(int userId, String userName, String password, String privilege, String email,String profile) {
         this.userId = userId;
         this.userName = userName;
         this.password = password;
         this.privilege = privilege;
         this.email = email;
+        this.profile = profile;
+    }
+
+    public User() {
+
+    }
+
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
     }
 
     // Getters and Setters

@@ -13,8 +13,10 @@ public interface ReservationDAO {
     List<Reservation> getAllReservations() throws SQLException;
 
 
-    void updateReservation(Reservation reservation) throws SQLException;
+
 
 
     void deleteReservation(int reservationId) throws SQLException;
+
+    List<Reservation> getReservatioByUser() throws SQLException;
 }

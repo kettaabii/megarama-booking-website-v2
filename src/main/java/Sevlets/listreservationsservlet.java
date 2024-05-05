@@ -29,9 +29,10 @@ public class listreservationsservlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ReservationDAO res = new ReservationDAOImpl();
-
+		ReservationDAO resuser= new ReservationDAOImpl();
 		try {
 			request.setAttribute("Reservationlist", res.getAllReservations());
+			request.setAttribute("Userreservation", resuser.getAllReservations());
 			System.out.println(res.getAllReservations()+"LLLLMMMMMMKKK");
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

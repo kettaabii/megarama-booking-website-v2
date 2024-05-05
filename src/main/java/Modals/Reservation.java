@@ -1,9 +1,14 @@
 package Modals;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
+@Entity
 
+@Table(name = "reservation")
 public class Reservation {
-    private int reservationId;
+    @Id private int reservationId;
     private String viewer;
     private String filmTitle;
     private Date reservationDate;
@@ -26,6 +31,10 @@ public class Reservation {
         this.reservationDate = reservationDate;
         this.price = price;
         this.seat = seat;
+    }
+
+    public Reservation() {
+
     }
 
     // Getters and Setters

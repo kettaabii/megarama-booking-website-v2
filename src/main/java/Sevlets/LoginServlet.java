@@ -24,6 +24,9 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
 
 
+
+
+
         try (Connection connection = Connectiondb.getConnection()) {
             UserDAO userDAO = new UserDAOImpl(connection);
             User user = userDAO.getUserByUsernameAndPassword(username, password);
@@ -40,6 +43,10 @@ public class LoginServlet extends HttpServlet {
                     // Set session attribute to mark user as logged in
                     session.setAttribute("clientLoggedIn", true);
                     session.setAttribute("username", user.getUserName());
+                    session.setAttribute("email", user.getEmail());
+                    session.setAttribute("profile",user.getProfile());
+
+
                     System.out.println(user.getUserName() +"::::::::::::::::::");
                     // Redirect to client dashboard
                     response.sendRedirect(request.getContextPath()+"/");

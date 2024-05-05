@@ -20,8 +20,9 @@
     <property name = "hibernate.show_sql">true</property>
 
     <!-- Optional: Auto-generate schema -->
-    <property name = "hibernate.hbm2ddl.auto">create</property>
+    <property name = "hibernate.hbm2ddl.auto">update</property>
     <mapping class="Modals.Movie"/>
-
+    <mapping class="Modals.Reservation"/>
+    <mapping class="Modals.User"/>
   </session-factory>
 </hibernate-configuration>

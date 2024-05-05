@@ -13,14 +13,14 @@ public class Movie {
     private String Title;
     @Column(name = "Dsecription")
     private String Description;
-    private String releaseDate;
+    private Date releaseDate;
     private int Duration;
     private String Genre;
     private String Director ;
     private String Cover;
     private String MegaCover;
 
-    public Movie(int filmId, String title, String description, String releaseDate, int duration, String genre, String director, String cover, String megaCover) {
+    public Movie(int filmId, String title, String description,Date releaseDate, int duration, String genre, String director, String cover, String megaCover) {
         this.filmId = filmId;
         Title = title;
         Description = description;
@@ -32,9 +32,7 @@ public class Movie {
         MegaCover = megaCover;
     }
 
-    public Movie(int filmId, String title, String description, Date releaseDate, int duration, String genre, String director, String cover, String megaCover) {
 
-    }
 
     public Movie() {
 
@@ -72,11 +70,11 @@ public class Movie {
         Description = description;
     }
 
-    public String getReleaseDate() {
+    public Date getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(String releaseDate) {
+    public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
 

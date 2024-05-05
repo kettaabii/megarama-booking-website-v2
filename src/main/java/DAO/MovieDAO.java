@@ -13,6 +13,8 @@ public interface MovieDAO {
     // Method to retrieve all movies
     List<Movie> getAllMovies() throws SQLException;
 
+    List<Movie> getFiveMovies() throws SQLException;
+
     // Method to retrieve a movie by its ID
     Movie getMovieById(int filmId) throws SQLException;
 

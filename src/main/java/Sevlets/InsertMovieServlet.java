@@ -32,7 +32,7 @@ public class InsertMovieServlet extends HttpServlet {
 		MovieDAO film = new MoviesDAOImpl();
 		String Title = request.getParameter("Title");
 		String Dsecription = request.getParameter("Description");
-		String ReleaseDateString = request.getParameter("ReleaseDate");
+		Date ReleaseDateString = Date.valueOf(request.getParameter("ReleaseDate"));
 		int Duration = Integer.parseInt(request.getParameter("Duration"));
 		String Genre = request.getParameter("Genre");
 		String Director = request.getParameter("Director");

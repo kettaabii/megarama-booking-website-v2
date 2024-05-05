@@ -1,11 +1,15 @@
 package MYSQLIMP;
 
 import DAO.ReservationDAO;
+import Modals.HibernateUtil;
 import Modals.Reservation;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
+
+
 
 public class ReservationDAOImpl implements ReservationDAO {
     public Connection connection;
@@ -14,64 +18,68 @@ public class ReservationDAOImpl implements ReservationDAO {
 
     @Override
     public void insertReservation(Reservation reservation) throws SQLException {
-        String sql = "INSERT INTO reservation (reservationId, viewer, filmTitle, reservationDate, price, seat) VALUES (?, ?, ?, ?, ?, ?)";
-        Connection con = Connectiondb.getConnection();
-        PreparedStatement statement = con.prepareStatement(sql);
+        Session session = HibernateUtil.getSessionFactory().openSession();
 
-            statement.setInt(1, reservation.getReservationId());
-            statement.setString(2, reservation.getViewer());
-            statement.setString(3, reservation.getFilmTitle());
-            statement.setDate(4, new java.sql.Date(reservation.getReservationDate().getTime()));
-            statement.setInt(5, reservation.getPrice());
-            statement.setString(6, reservation.getSeat());
-            statement.executeUpdate();
+        session.save(reservation);
+        session.beginTransaction().commit();
+        session.close();
 
     }
 
     @Override
     public List<Reservation> getAllReservations() throws SQLException {
-        List<Reservation> reservations = new ArrayList<>();
-        System.out.println(reservations +"REEEEEEEEEEEESEEEEEEEERRRRRVVVVAAAATTTTIIIIOOONNNSS");
-        String sql = "SELECT * FROM reservation";
-        Connection con = Connectiondb.getConnection();
-        PreparedStatement statement = con.prepareStatement(sql);
-        ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                int reservationId = resultSet.getInt("reservationId");
-                String viewer = resultSet.getString("viewer");
-                String filmTitle = resultSet.getString("filmTitle");
-                Date reservationDate = resultSet.getDate("reservationDate");
-                int price = resultSet.getInt("price");
-                String seat = resultSet.getString("seat");
-
-                Reservation reservation = new Reservation(reservationId, viewer, filmTitle, reservationDate, (int) price, seat);
-                reservations.add(reservation);
-            }
-
-        return reservations;
-    }
-
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        List<Reservation> query = session.createQuery("Select t from Reservation t", Reservation.class).getResultList();
+        List<Reservation> reservations = query;
+        transaction.commit();
+        session.close();
+        return reservations;}
     @Override
-    public void updateReservation(Reservation reservation) throws SQLException {
-        String sql = "UPDATE reservations SET viewer=?, filmTitle=?, reservationDate=?, price=?, seat=? WHERE reservationId=?";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, reservation.getViewer());
-            statement.setString(2, reservation.getFilmTitle());
-            statement.setDate(3, new java.sql.Date(reservation.getReservationDate().getTime()));
-            statement.setInt(4, reservation.getPrice());
-            statement.setString(5, reservation.getSeat());
-            statement.setInt(6, reservation.getReservationId());
-            statement.executeUpdate();
-        }
+    public List<Reservation> getReservatioByUser(String viewer) throws SQLException {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+
+
+        List<Reservation> query = session.createQuery("SELECT p from Reservation t JOIN t.viewer p WHERE t.viewer = :pusername", Reservation.class).getResultList();
+        List<Reservation> reservations = query;
+        transaction.commit();
+        session.close();
+        return reservations;
+//        List<Reservation> reservations = new ArrayList<>();
+//        System.out.println(reservations +"REEEEEEEEEEEESEEEEEEEERRRRRVVVVAAAATTTTIIIIOOONNNSS");
+//        String sql = "SELECT * FROM reservation";
+//        Connection con = Connectiondb.getConnection();
+//        PreparedStatement statement = con.prepareStatement(sql);
+//        ResultSet resultSet = statement.executeQuery();
+//            while (resultSet.next()) {
+//                int reservationId = resultSet.getInt("reservationId");
+//                String viewer = resultSet.getString("viewer");
+//                String filmTitle = resultSet.getString("filmTitle");
+//                Date reservationDate = resultSet.getDate("reservationDate");
+//                int price = resultSet.getInt("price");
+//                String seat = resultSet.getString("seat");
+//
+//                Reservation reservation = new Reservation(reservationId, viewer, filmTitle, reservationDate, (int) price, seat);
+//                reservations.add(reservation);
+//            }
+//
+//        return reservations;
+
     }
+
+
 
     @Override
     public void deleteReservation(int reservationId) throws SQLException {
-        String sql = "DELETE FROM reservations WHERE reservationId=?";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, reservationId);
-            statement.executeUpdate();
-        }
-    }
-}
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Reservation reservation = (Reservation)session.load(Reservation.class,reservationId);
+        session.delete(reservation);
+
+        //This makes the pending delete to be done
+        session.flush() ;
+        session.close();
+
+    }}
+
 

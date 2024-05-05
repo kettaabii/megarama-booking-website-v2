@@ -40,9 +40,35 @@
             </div>
 
         </div>
+
         <div class="login">
-            <a class="nav-link text-light mx-lg-2 mx-4" href="/Cinema_Megarama_war_exploded/login"><% if (session.getAttribute("username") == null){
-            %>login<%} else {%>logout<%}%></a>
+            <% if (session.getAttribute("username") == null){%>
+            <a class="nav-link text-light mx-lg-2 mx-4" href="/Cinema_Megarama_war_exploded/login">
+                login</a>
+            <%} else {%>
+            <div class="action">
+                <div class="profile" onclick="menuToggle();">
+                    <img src="<%=session.getAttribute("profile")%>" />
+                </div>
+                <div class="menu">
+                    <h3><%=session.getAttribute("username")%><br /><span><%=session.getAttribute("email")%></span></h3>
+                    <ul>
+                        <li>
+                            <img src="https://icon-library.com/images/reservation-icon-png/reservation-icon-png-10.jpg" /><a href="listreservationsservlet?viewer=<%=session.getAttribute("username")%>">My Reservations</a>
+                        </li>
+                        <li>
+                            <img src="https://cdn-icons-png.freepik.com/512/5563/5563837.png" /><a href="#">My watchlist</a>
+                        </li>
+                        <li>
+                            <img src="<%=session.getAttribute("profile")%>" /><a href="#">Profile Settings</a>
+                        </li>
+                        <li>
+                            <img src="./assets/icons/log-out.png" /><a href="#">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+           <%}%>
 
     </div>
         <i class='bx bx-user bx-flip-horizontal icon rounded' style='color:white'></i>
@@ -54,7 +80,7 @@
 </nav>
 <div id="slider">
     <figure>
-        <c:forEach var="film" items="${filmlist}">
+        <c:forEach var="film" items="${filmlistslider}">
         <div class="image"><img style="width: 100%; height: 100vh;" src="${film.getMegaCover()}" alt="">
             <div class="example"  >
                 <div class="description" style="display: flex;margin: 10px;">
@@ -94,44 +120,55 @@
     </figure>
 </div>
 <h2 style="color: white; margin: 1rem; padding: 10px 20px; background: background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 20%, rgba(0,0,0,1) 50%, rgba(0,0,0,0.6) 80%, rgba(0,0,0,0) 100%);">Streaming Now :</h2>
+<div class="grid-wrapper" style="display: flex; flex-wrap: wrap;
+    width: 100%;
+    height: 350px;
+    position: relative;
+    margin: 30px;">
 
-<div class="grid-wrapper" style="display: flex;flex-wrap: wrap;">
-    <c:forEach var="film" items="${filmlist}">
-    <!-- Card -->
-    <div class="card-container box">
-        <div class="card-flip">
-            <!-- Card Front -->
-            <div class="card front">
-                <img src="${film.getCover()}" class="card-img-top img-fluid" alt="movie-poster">
-                <div class="card-block">
-                    <h5 class="card-title">${film.getTitle()}</h5>
-                    <p class="card-text">${film.getGenre()}</p>
-                    <p class="card-text"><small class="text-muted">${film.getDuration()} min </small></p>
-                </div>
+<c:forEach var="film" items="${filmlist}">
+        <div class="card">
+            <img src="${film.getCover()}" class="card-img" alt="" />
+            <div class="card-body">
+                <h2 class="name">${film.getTitle()}</h2>
+                <h6 class="des">${film.getGenre()}</h6>
+                <button class="watchlist-btn"href="BookMovie?id=${film.getFilmId()}">add to watchlist</button>
             </div>
-            <!-- End Card Front -->
-
-            <!-- Card Back -->
-            <div class="card back">
-                <div class="card-header warning-color"></div>
-                <div class="card-block text-center">
-                    <p class="card-text"><a href="#" class="rating">${film.getGenre()}</a></p>
-                    <p class="card-text">${film.getDescription()}</p>
-                    <p class="card-text">${film.getDirector()}</p>
-                    <p class="card-text">${film.getReleaseDate()}</p>
-                    <a  type="submit" href="BookMovie?id=${film.getFilmId()}" >Book Now</a>
-                </div>
-                <img class="movie" src="${film.getMegaCover()}" alt="back-img">
-            </div>
-            <!-- End Card Back -->
         </div>
+
+</c:forEach>
     </div>
-    <!-- End Card -->
-    </c:forEach>
 </div>
 
 
 
 
+
+
+
+
+<script>
+    function menuToggle() {
+        const toggleMenu = document.querySelector(".menu");
+        toggleMenu.classList.toggle("active");
+    }
+    let cardContainers = [...document.querySelectorAll(".card-container")];
+    let preBtns = [...document.querySelectorAll(".pre-btn")];
+    let nxtBtns = [...document.querySelectorAll(".nxt-btn")];
+
+    cardContainers.forEach((item, i) => {
+        let containerDimensions = item.getBoundingClientRect();
+        let containerWidth = containerDimensions.width;
+
+        nxtBtns[i].addEventListener("click", () => {
+            item.scrollLeft += containerWidth - 200;
+        });
+
+        preBtns[i].addEventListener("click", () => {
+            item.scrollLeft -= containerWidth + 200;
+        });
+    });
+
+</script>
 </body>
 </html>

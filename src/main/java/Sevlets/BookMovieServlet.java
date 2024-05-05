@@ -28,12 +28,12 @@ private final MoviesDAOImpl moviesDAO=new MoviesDAOImpl();
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Retrieve the movie ID from the request parameter
 
-        int movieId = Integer.parseInt(request.getParameter("id"));
+        int filmId = Integer.parseInt(request.getParameter("id"));
         try {
            //Movie movie=moviesDAO.getMovieById(movieId);
-            request.setAttribute("Movie", moviesDAO.getMovieById(movieId));
+            request.setAttribute("Movie", moviesDAO.getMovieById(filmId));
 
-            System.out.println(moviesDAO.getMovieById(2));
+            System.out.println(moviesDAO.getMovieById(1));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

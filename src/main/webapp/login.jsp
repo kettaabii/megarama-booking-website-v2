@@ -49,7 +49,7 @@
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
-						
+
 							  <input type="text" name="username" id="username" placeholder="">
 						</div>
 					</div>
@@ -65,7 +65,7 @@
 					  <button type="submit" value="Login" class="sign">Sign in</button>
 				</form>
 			</div>
-			
+
 		</div>
 	</div>
 </div>

@@ -21,6 +21,107 @@ nav{
     95% { left: -300%; }
     100% { left: -400%; }
 }
+.action {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+}
+
+.action .profile {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.action .profile img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.action .menu {
+    position: absolute;
+    top: 120px;
+    right: -10px;
+    padding: 10px 20px;
+    background: #fff;
+    width: 200px;
+    box-sizing: 0 5px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    transition: 0.5s;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.action .menu.active {
+    top: 80px;
+    visibility: visible;
+    opacity: 1;
+}
+
+.action .menu::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    right: 28px;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    transform: rotate(45deg);
+}
+
+.action .menu h3 {
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    padding: 20px 0;
+    font-weight: 500;
+    color: #555;
+    line-height: 1.5em;
+}
+
+.action .menu h3 span {
+    font-size: 14px;
+    color: #cecece;
+    font-weight: 300;
+}
+
+.action .menu ul li {
+    list-style: none;
+    padding: 16px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+}
+
+.action .menu ul li img {
+    max-width: 20px;
+    margin-right: 10px;
+    opacity: 0.5;
+    transition: 0.5s;
+}
+
+.action .menu ul li:hover img {
+    opacity: 1;
+}
+
+.action .menu ul li a {
+    display: inline-block;
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    transition: 0.5s;
+}
+
+.action .menu ul li:hover a {
+    color: #ff5d94;
+}
 
 body { margin: 0; }
 div#slider { overflow: hidden; }
@@ -36,6 +137,31 @@ div#slider figure {
     font-size: 0;
     animation: 30s slidy infinite;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .example {
     position: absolute;
     top: 60px;
@@ -101,114 +227,91 @@ body {
 
 }
 
-.grid-wrapper {
-    /*you can use display grid and start adding cards in a row*/
-    /*display: grid;*/
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    grid-gap: 20px;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.watchlist-btn {
+    position: relative;
+    width: 100%;
+    text-transform: capitalize;
+    background: none;
+    border: none;
+    font-weight: 500;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 5px 0;
+    cursor: pointer;
+    padding: 10px 5px;
+    border-radius: 5px;
 }
 
-.box {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center; /*only using it to showcase the card at the center here*/
-}
 
-.card {
-    max-width: 170px; /*only using it for better showcase here*/
-    margin: 50px 10px; /*only using it for better showcase here*/
-}
 
 .card-container {
-    display: -ms-grid;
-    display: grid;
-    -webkit-perspective: 150px;
-    perspective: 150px;
-    padding-bottom: 10px;
-
+    width: 92%;
+    position: relative;
+    padding-left: 10px;
+    height: 250px;
+    display: flex;
+    margin: 15px;
+    align-items: center;
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-behavior: smooth;
+}
+.cardr-container::webkit-scroll-bar {
+    display: none;
+}
+.card {
+    position: relative;
+    min-width: 150px;
+    width: 150px;
+    height: 250px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 20px;
+    transition: 0.5s;
+}
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.card-title p, h4, h5 {
-
-    text-align: center;
-    color: white;
+.card:hover {
+    transform: scale(1.1);
 }
 
-.card-text {
-
-    text-align: center;
-    color: white;
+.card:hover .card-body {
+    opacity: 1;
 }
 
-.card-flip {
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-rows: 1fr;
-    -ms-grid-columns: 1fr;
-    grid-template: 1fr / 1fr;
-    grid-template-areas: "frontAndBack";
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-    -webkit-transition: all 0.7s ease;
-    transition: all 0.7s ease;
-}
-
-.card-flip div {
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-}
-
-.front {
-    -ms-grid-row: 1;
-    -ms-grid-column: 1;
-    grid-area: frontAndBack;
-
-    /* From https://css.glass */
-    background: rgba(207, 223, 228, 0.56)!important;
-    border-radius: 16px;
-
-    backdrop-filter: blur(5.9px);
-    -webkit-backdrop-filter: blur(5.9px);
-    border: 1px solid rgba(207, 223, 228, 0.11);
-
-    -webkit-box-shadow:0px 0px 109px 0px rgba(210,255,46,0.84);
-    -moz-box-shadow: 0px 0px 109px 0px rgba(210,255,46,0.84);
-    box-shadow: 0px 0px 109px 0px rgba(210,255,46,0.84);
-}
-
-.back {
-    -ms-grid-row: 1;
-    -ms-grid-column: 1;
-    grid-area: frontAndBack;
-    -webkit-transform: rotateY(-180deg);
-    transform: rotateY(-180deg);
-    /* From https://css.glass */
-    background: rgba(207, 223, 228, 0.56)!important;
-    border-radius: 16px;
-
-    backdrop-filter: blur(5.9px);
-    -webkit-backdrop-filter: blur(5.9px);
-    border: 1px solid rgba(207, 223, 228, 0.11);
-
-    margin: 0;
-    padding: 0;
-    height: 170px;
-    -webkit-box-shadow:0px 0px 109px 0px rgba(210,255,46,0.84);
-    -moz-box-shadow: 0px 0px 109px 0px rgba(210,255,46,0.84);
-    box-shadow: 0px 0px 109px 0px rgba(210,255,46,0.84);
-
-}
-
-.card-container:hover .card-flip {
-    -webkit-transform: rotateY(180deg);
-    transform: rotateY(180deg);
-}
-
-.btn {
-    color: #f5b700 !important;
+.card-body {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background: linear-gradient(to bottom, rgba(4, 8, 15, 0), #192133 90%);
+    padding: 10px;
+    transition: 0.5s;
 }
 
 
@@ -227,7 +330,7 @@ body {
     height: auto;
     bottom: 0;
 }
-button {
+.bte {
     text-decoration: none;
     position: relative;
     border: none;
@@ -249,40 +352,11 @@ a{
     color: white;
 }
 
-button:hover {
-    animation: ani 8s linear infinite;
-    border: none;
-}
 
-@keyframes ani {
-    0% {
-        background-position: 0%;
-    }
 
-    100% {
-        background-position: 400%;
-    }
-}
 
-button:before {
-    content: "";
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    z-index: -1;
-    background: linear-gradient(90deg, rgba(107, 119, 64, 0.57), #f5b700, #ffeb3b, #232222);
-    background-size: 400%;
-    border-radius: 35px;
-    transition: 1s;
-}
 
-button:hover::before {
-    filter: blur(20px);
-}
 
-button:active {
-    background: linear-gradient(32deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
-}
+
+
 
