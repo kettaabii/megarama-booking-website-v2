@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+<<<<<<< HEAD
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
 	version="4.0">
@@ -11,6 +12,43 @@
 		<servlet-name>LogoutServlet</servlet-name>
 		<url-pattern>/lgout</url-pattern>
 	</servlet-mapping>
+=======
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>Sevlets.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/lgout</url-pattern>
+    </servlet-mapping>
+<<<<<<< HEAD
+    
+=======
+>>>>>>> 1ca07078820061a6a3ecc05655c947f1696bcd54
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>Sevlets.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/lgin</url-pattern>
+    </servlet-mapping>
+<<<<<<< HEAD
+    
+=======
+>>>>>>> 1ca07078820061a6a3ecc05655c947f1696bcd54
+    <servlet>
+        <servlet-name>ShowMovie</servlet-name>
+        <servlet-class>Sevlets.ShowMovie</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowMovie</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+>>>>>>> 408becb97dd376bc0c0528c385895244d960b119
 
 	<servlet>
 		<servlet-name>LoginServlet</servlet-name>

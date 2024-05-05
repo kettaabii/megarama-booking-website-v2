@@ -56,6 +56,7 @@ Movie
 					</ul>
 				</div>
 
+<<<<<<< HEAD
 			</div>
 			<div class="login">
 				<a class="nav-link text-light mx-lg-2 mx-4"
@@ -99,6 +100,46 @@ Movie
 										${film.getGenre()}</p>
 									<p style="font-size: 14px; text-align: start;">${film.getDescription()}</p>
 								</div>
+=======
+        </div>
+        <div class="login">
+<<<<<<< HEAD
+            <a class="nav-link text-light mx-lg-2 mx-4" href="/Cinema_Megarama_war_exploded/login">Login</a>
+        </div>
+=======
+            <a class="nav-link text-light mx-lg-2 mx-4" href="/Cinema_Megarama_war_exploded/login"><% if (session.getAttribute("username") == null){
+            %>login<%} else {%>logout<%}%></a>
+
+    </div>
+>>>>>>> 1ca07078820061a6a3ecc05655c947f1696bcd54
+        <i class='bx bx-user bx-flip-horizontal icon rounded' style='color:white'></i>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+<div id="slider">
+    <figure>
+        <c:forEach var="film" items="${filmlist}">
+        <div class="image"><img style="width: 100%; height: 100vh;" src="${film.getMegaCover()}" alt="">
+            <div class="example"  >
+                <div class="description" style="display: flex;margin: 10px;">
+                <img src="${film.getCover()}" class="backimg"/>
+                <div style="margin:15px; display: flex; flex-direction: column; justify-content: space-between">
+                    <div style="width: 350px">
+                        <h3 style="color: white;">${film.getTitle()}</h3>
+                        <p style="font-size: 13px; text-align: start;">${film.getDuration()} -<span> ${film.getReleaseDate()} -</span><span
+                                style="font-weight: bold;">${film.getDirector()}</span></p>
+                        <p style="font-size: 13px; text-align: start;"><span class="text-success">92% Match </span><span
+                                class="border rounded px-1 mx-2">TV - MA</span><span style="font-weight: bold;"
+                                                                                     class="border rounded px-1 mx-1 ">HD</span><span
+                                style='color:#fdb000; background: rgba(0, 0, 0, 0.6);' class="rounded border px-2 mx-1">9.0 <i
+                                class='bx bxs-star' style='color:#fdb000'></i></span></p>
+                        <p style="font-size: 15px; text-align: start;">Genre : ${film.getGenre()}</p>
+                        <p style="font-size: 14px; text-align: start;">${film.getDescription()}</p>
+                    </div>
+>>>>>>> 408becb97dd376bc0c0528c385895244d960b119
 
 								<div class="btns"
 									style="display: flex; justify-content: space-around;">

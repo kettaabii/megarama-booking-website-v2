@@ -27,7 +27,7 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        // Authenticate user credentials
+
         try (Connection connection = Connectiondb.getConnection()) {
             UserDAO userDAO = new UserDAOImpl(connection);
             User user = userDAO.getUserByUsernameAndPassword(username, password);

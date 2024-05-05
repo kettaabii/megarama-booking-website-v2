@@ -21,5 +21,8 @@ public interface MovieDAO {
 
     // Method to delete a movie
     void deleteMovie(int filmId) throws SQLException;
+
+
+    List<Movie> searchMoviesByTitle(String title) throws SQLException;
 }
 

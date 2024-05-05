@@ -6,6 +6,7 @@
 <head>
 
 
+<<<<<<< HEAD
 <title>cliaaan</title>
 <style>
 <%@
@@ -116,10 +117,110 @@ button:hover {
 	margin: 0;
 }
 </style>
+=======
+    <title>cliaaan</title>
+    <style><%@include file="WEB-INF/bookstylz.css"%></style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<<<<<<< HEAD
+<style>body {
+        font-family: Arial, sans-serif;
+        background-color: #0000FF;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+     
+    .container1 {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 400px;
+    }
+     
+   
+     
+    .rating {
+        font-size: 20px;
+        margin: 10px 0;
+    }
+     
+    .stars {
+        font-size: 30px;
+        margin: 10px 0;
+    }
+     
+    .star {
+        cursor: pointer;
+        margin: 0 5px;
+    }
+     
+    .one {
+        color: rgb(255, 0, 0);
+    }
+     
+    .two {
+        color: rgb(255, 106, 0);
+    }
+     
+    .three {
+        color: rgb(251, 255, 120);
+    }
+     
+    .four {
+        color: rgb(255, 255, 0);
+    }
+     
+    .five {
+        color: rgb(24, 159, 14);
+    }
+     
+    textarea {
+        width: 90%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+     
+    button {
+        background-color: #007BFF;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+     
+    button:hover {
+        background-color: #0056b3;
+    }
+     
+    .reviews {
+        margin-top: 20px;
+        text-align: left;
+    }
+     
+    .review {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 10px;
+        margin: 10px 0;
+    }
+     
+    .review p {
+        margin: 0;
+    }</style>
+>>>>>>> 408becb97dd376bc0c0528c385895244d960b119
 
 </head>
 
 
+=======
+</head>
+>>>>>>> 1ca07078820061a6a3ecc05655c947f1696bcd54
 <body>
 	<!-- Navbar -->
 	<nav class="navbar nav-movie bg-dark fixed-top navbar-expand-lg py-0"
@@ -214,6 +315,7 @@ button:hover {
 
 			<div class="zone_right">
 
+<<<<<<< HEAD
 				<form action="confirm-reservation" method="POST">
 					<p class="border rounded px-1 mx-1"
 						style="font-size: 2rem; font-weight: bold; text-align: center; text-decoration: #FFC312;"><%= movie.getTitle()%></p>
@@ -278,12 +380,167 @@ button:hover {
 					<button id="btn" type="submit">Confirm your ticket
 						reservation</button>
 				</form>
+=======
+            <form action="confirm-reservation" method="POST">
+                <p class="border rounded px-1 mx-1"style="font-size: 2rem;font-weight: bold;text-align: center ;text-decoration: #FFC312;"><%= movie.getTitle()%></p>
+                <input type="hidden" name="title" value="<%= movie.getTitle()%>">
+            <div class="prices">
+                <div class="total">
+                    <span> <span class="count" class="border rounded px-1 mx-1" style="font-size: 2rem;font-weight: bold;text-align: center ;text-decoration: #FFC312;">0</span> Tickets </span>
+                    <input type="hidden" >
+                    <div class="amount" class="border rounded px-1 mx-1"style="font-size: 2rem;font-weight: bold;text-align: center ;text-decoration: #FFC312;">0</div>
+                    <input type="hidden" name="amount" class="price" value="">
+                    <div id="seat-selected" class="border rounded px-1 mx-1"style="font-size: 2rem;font-weight: bold;text-align: center ;text-decoration: #FFC312;">0</div>
+                    <input type="hidden" name="seat" class="selectseat" value="">
+                    <div class="timings">
+                        <div class="dates">
+                            <input type="radio" name="date" id="d1" value="2024-05-11" checked />
+                            <label for="d1" class="dates-item">
+                                <div class="day">Sun</div>
+                                <div class="date">11</div>
+                            </label>
+                            <input type="radio" id="d2" name="date" value="2024-05-12"/>
+                            <label class="dates-item" for="d2">
+                                <div class="day">Mon</div>
+                                <div class="date">12</div>
+                            </label>
+                            <input type="radio" id="d3" name="date" value="2024-05-13"/>
+                            <label class="dates-item" for="d3">
+                                <div class="day">Tue</div>
+                                <div class="date">13</div>
+                            </label>
+                            <input type="radio" id="d4" name="date" value="2024-05-14"/>
+                            <label class="dates-item" for="d4">
+                                <div class="day">Wed</div>
+                                <div class="date">14</div>
+                            </label>
+                            <input type="radio" id="d5" name="date" value="2024-05-15"/>
+                            <label class="dates-item" for="d5">
+                                <div class="day">Thu</div>
+                                <div class="date">15</div>
+                            </label>
+                            <input type="radio" id="d6" name="date" value="2024-05-16"/>
+                            <label class="dates-item" for="d6">
+                                <div class="day">Fri</div>
+                                <div class="date">16</div>
+                            </label>
+                            <input type="radio" id="d7" name="date" value="2024-05-17"/>
+                            <label class="dates-item" for="d7">
+                                <div class="day">Sat</div>
+                                <div class="date">17</div>
+                            </label>
+                        </div>
+                        <div class="times">
+                            <input type="radio" name="time" id="t1" checked />
+                            <label for="t1" class="time">11:00</label>
+                            <input type="radio" id="t2" name="time" />
+                            <label for="t2" class="time"> 14:30 </label>
+                            <input type="radio" id="t3" name="time" />
+                            <label for="t3" class="time"> 18:00 </label>
+                            <input type="radio" id="t4" name="time" />
+                            <label for="t4" class="time"> 21:30 </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <button id="btn" type="submit">Confirm your ticket reservation</button>
+            </form>
+<<<<<<< HEAD
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <form id="commentForm" action="AddCommentServlet" method="post">
+    <div class="container1">
+        <!-- Hidden fields for movieId and userId -->
+        <input type="hidden" id="movieId" name="movieId" value="1">
+        <input type="hidden" id="userId" name="userId" value="1">
+
+        <div class="rating">
+            <label for="rating">Rating:</label>
+            <input type="number" id="rating" name="rating" min="1" max="5" required>
+            /5
+        </div>
+        
+        <div class="stars" id="stars">
+            <span class="star" data-value="1">★</span>
+            <span class="star" data-value="2">★</span>
+            <span class="star" data-value="3">★</span>
+            <span class="star" data-value="4">★</span>
+            <span class="star" data-value="5">★</span>
+        </div>
+       
+        <label for="review">Share your review:</label>
+        <textarea id="review" name="description" placeholder="Write your review here" required></textarea>
+        <button type="submit">Submit</button>
+        <div class="reviews" id="reviews"></div>
+    </div>
+</form>
+
+                
+                
+                
+                
+                
+                
+                
+                </div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+=======
+
+>>>>>>> 1ca07078820061a6a3ecc05655c947f1696bcd54
+        </div>
+
+
+
+    </div>
+</div>
+>>>>>>> 408becb97dd376bc0c0528c385895244d960b119
 
 
 
 
 
 
+<<<<<<< HEAD
 
 
 
@@ -472,6 +729,7 @@ button:hover {
 
 
 
+<<<<<<< HEAD
 
 
 
@@ -494,6 +752,11 @@ button:hover {
 
 
 	<script>
+=======
+=======
+>>>>>>> 1ca07078820061a6a3ecc05655c947f1696bcd54
+<script>
+>>>>>>> 408becb97dd376bc0c0528c385895244d960b119
     let seats = document.querySelector(".all-seats");
     for (var i = 0; i < 59; i++) {
         let randint = Math.floor(Math.random() * 2);
@@ -526,7 +789,11 @@ button:hover {
                 count -= 1;
                 amount -= 200;
             }
+<<<<<<< HEAD
             document.querySelector(".amount").innerHTML = amount;
+=======
+            document.querySelector(".amount").innerHTML = amount +'<p>Dhs</p>' ;
+>>>>>>> 1ca07078820061a6a3ecc05655c947f1696bcd54
             document.querySelector(".count").innerHTML = count;
             valueAmount.value = amount;
         });
