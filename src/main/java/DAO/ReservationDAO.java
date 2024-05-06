@@ -18,5 +18,5 @@ public interface ReservationDAO {
 
     void deleteReservation(int reservationId) throws SQLException;
 
-    List<Reservation> getReservatioByUser() throws SQLException;
+    List<Reservation> getReservationByUser(String viewer) throws SQLException;
 }

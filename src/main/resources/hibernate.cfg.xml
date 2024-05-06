@@ -24,5 +24,6 @@
     <mapping class="Modals.Movie"/>
     <mapping class="Modals.Reservation"/>
     <mapping class="Modals.User"/>
+    <mapping class="Modals.Watchlater"/>
   </session-factory>
 </hibernate-configuration>

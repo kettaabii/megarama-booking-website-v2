@@ -1,5 +1,6 @@
 <%@ page import="Modals.Movie" %>
 <%@ page import="MYSQLIMP.MoviesDAOImpl" %>
+<%@ page import="Modals.Comment" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
@@ -9,6 +10,92 @@
     <title>cliaaan</title>
     <style><%@include file="WEB-INF/bookstylz.css"%></style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>body{
+        background: black;
+
+    }
+
+    .container1 {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 400px;
+    }
+
+
+
+    .rating {
+        font-size: 20px;
+        margin: 10px 0;
+    }
+
+    .stars {
+        font-size: 30px;
+        margin: 10px 0;
+    }
+
+    .star {
+        cursor: pointer;
+        margin: 0 5px;
+    }
+
+    .one {
+        color: rgb(255, 0, 0);
+    }
+
+    .two {
+        color: rgb(255, 106, 0);
+    }
+
+    .three {
+        color: rgb(251, 255, 120);
+    }
+
+    .four {
+        color: rgb(255, 255, 0);
+    }
+
+    .five {
+        color: rgb(24, 159, 14);
+    }
+
+    textarea {
+        width: 90%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    button {
+        background-color: #007BFF;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    .reviews {
+        margin-top: 20px;
+        text-align: left;
+    }
+
+    .review {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 10px;
+        margin: 10px 0;
+    }
+
+    .review p {
+        margin: 0;
+    }</style>
 </head>
 <body>
 <!-- Navbar -->
@@ -167,7 +254,63 @@
 
 
     </div>
+
+
 </div>
+
+<form id="commentForm" action="AddComment" method="post">
+    <div class="container1">
+        <!-- Hidden fields for movieId and userId -->
+        <input type="hidden" id="movieId" name="movieId" value="<%= movie.getFilmId()%>>">
+        <input type="hidden" id="viewer" name="Viewer" value="<%=session.getAttribute("username")%>">
+
+        <div class="rating">
+            <label for="rating">Rating:</label> <input type="number"
+                                                       id="rating" name="rating" min="1" max="5" required> /5
+        </div>
+
+        <div class="stars" id="stars" name="rating">
+            <span class="star" data-value="1">★</span> <span class="star"
+                                                             data-value="2">★</span> <span class="star" data-value="3">★</span>
+            <span class="star" data-value="4">★</span> <span class="star"
+                                                             data-value="5">★</span>
+        </div>
+
+        <label for="review">Share your review:</label>
+        <textarea id="review" name="comment"
+                  placeholder="Write your review here" required></textarea>
+        <button type="submit">Submit</button>
+        <div class="reviews" id="reviews"></div>
+    </div>
+</form>
+
+
+
+
+<h1>Comments</h1>
+<ul>
+    <c:forEach var="comment" items="${comments}">
+        <li>
+            <p>
+                <strong>Movie ID:</strong> ${comment.movieId}
+            </p>
+            <p>
+                <strong>User ID:</strong> ${comment.userId}
+            </p>
+            <p>
+                <strong>Description:</strong> ${comment.description}
+            </p>
+            <p>
+                <strong>Rating:</strong> ${comment.rating}
+            </p>
+        </li>
+    </c:forEach>
+</ul>
+
+
+
+</div>
+
 
 
 
@@ -229,6 +372,86 @@
             });
         });
     });
+
+        const stars = document.querySelectorAll(".star");
+        const rating = document.getElementById("rating");
+        const reviewText = document.getElementById("review");
+        const submitBtn = document.getElementById("submit");
+        const reviewsContainer = document.getElementById("reviews");
+
+        stars.forEach((star) => {
+        star.addEventListener("click", () => {
+            const value = parseInt(star.getAttribute("data-value"));
+            rating.innerText = value;
+
+            // Remove all existing classes from stars
+            stars.forEach((s) => s.classList.remove("one",
+                "two",
+                "three",
+                "four",
+                "five"));
+
+            // Add the appropriate class to
+            // each star based on the selected star's value
+            stars.forEach((s, index) => {
+                if (index < value) {
+                    s.classList.add(getStarColorClass(value));
+                }
+            });
+
+            // Remove "selected" class from all stars
+            stars.forEach((s) => s.classList.remove("selected"));
+            // Add "selected" class to the clicked star
+            star.classList.add("selected");
+        });
+    });
+
+        submitBtn.addEventListener("click", () => {
+        const review = reviewText.value;
+        const userRating = parseInt(rating.innerText);
+
+        if (!userRating || !review) {
+        alert(
+        "Please select a rating and provide a review before submitting."
+        );
+        return;
+    }
+
+        if (userRating > 0) {
+        const reviewElement = document.createElement("div");
+        reviewElement.classList.add("review");
+        reviewElement.innerHTML =
+        `<p><strong>Rating: ${userRating}/5</strong></p><p>${review}</p>`;
+        reviewsContainer.appendChild(reviewElement);
+
+        // Reset styles after submitting
+        reviewText.value = "";
+        rating.innerText = "0";
+        stars.forEach((s) => s.classList.remove("one",
+        "two",
+        "three",
+        "four",
+        "five",
+        "selected"));
+    }
+    });
+
+        function getStarColorClass(value) {
+        switch (value) {
+        case 1:
+        return "one";
+        case 2:
+        return "two";
+        case 3:
+        return "three";
+        case 4:
+        return "four";
+        case 5:
+        return "five";
+        default:
+        return "";
+    }
+    }
 </script>
 
 </body>

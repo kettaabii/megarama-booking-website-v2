@@ -30,9 +30,10 @@ public class listreservationsservlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ReservationDAO res = new ReservationDAOImpl();
 		ReservationDAO resuser= new ReservationDAOImpl();
+		String viewer = request.getParameter("viewer");
 		try {
 			request.setAttribute("Reservationlist", res.getAllReservations());
-			request.setAttribute("Userreservation", resuser.getAllReservations());
+			request.setAttribute("Userreservation", resuser.getReservationByUser(viewer));
 			System.out.println(res.getAllReservations()+"LLLLMMMMMMKKK");
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -43,6 +44,8 @@ public class listreservationsservlet extends HttpServlet {
         }
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		ReservationDAO resuser= new ReservationDAOImpl();
+		String viewer= (String) request.getSession().getAttribute("username");
 		doGet(request, response);
 	}
 

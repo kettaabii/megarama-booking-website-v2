@@ -3,6 +3,7 @@ package MYSQLIMP;
 import DAO.ReservationDAO;
 import Modals.HibernateUtil;
 import Modals.Reservation;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -12,7 +13,6 @@ import java.util.List;
 
 
 public class ReservationDAOImpl implements ReservationDAO {
-    public Connection connection;
 
 
 
@@ -34,18 +34,36 @@ public class ReservationDAOImpl implements ReservationDAO {
         List<Reservation> reservations = query;
         transaction.commit();
         session.close();
-        return reservations;}
-    @Override
-    public List<Reservation> getReservatioByUser(String viewer) throws SQLException {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
-
-
-        List<Reservation> query = session.createQuery("SELECT p from Reservation t JOIN t.viewer p WHERE t.viewer = :pusername", Reservation.class).getResultList();
-        List<Reservation> reservations = query;
-        transaction.commit();
-        session.close();
         return reservations;
+    }
+
+
+    @Override
+    public List<Reservation> getReservationByUser(String viewer) throws SQLException {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = null;
+        List<Reservation> reservations = null;
+
+        try {
+            transaction = session.beginTransaction();
+            Query<Reservation> query = session.createQuery("SELECT t FROM Reservation t WHERE t.viewer = :viewer", Reservation.class);
+            query.setParameter("viewer", viewer);
+            reservations = query.getResultList();
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace(); // Handle the exception appropriately
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+
+        return reservations;
+    }
+
 //        List<Reservation> reservations = new ArrayList<>();
 //        System.out.println(reservations +"REEEEEEEEEEEESEEEEEEEERRRRRVVVVAAAATTTTIIIIOOONNNSS");
 //        String sql = "SELECT * FROM reservation";
@@ -66,20 +84,17 @@ public class ReservationDAOImpl implements ReservationDAO {
 //
 //        return reservations;
 
-    }
-
-
 
     @Override
     public void deleteReservation(int reservationId) throws SQLException {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Reservation reservation = (Reservation)session.load(Reservation.class,reservationId);
+        Reservation reservation = (Reservation) session.load(Reservation.class, reservationId);
         session.delete(reservation);
 
         //This makes the pending delete to be done
-        session.flush() ;
+        session.flush();
         session.close();
 
-    }}
-
+    }
+}
 
